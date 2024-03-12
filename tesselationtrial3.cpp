@@ -9,31 +9,40 @@ void initialize() {
 }
 
 void drawTetrahedron() {
-    glBegin(GL_TRIANGLES);
+    glBegin(GL_LINES);
 
     // Define vertices for each face of the tetrahedron
     // Face 1
     glVertex3f(1.0, 0.0, -1.0);
     glVertex3f(-1.0, 0.0, -1.0);
-    glVertex3f(0.0, 1.0, 1.0);
 
     // Face 2
-    glVertex3f(1.0, 0.0, -1.0);
-    glVertex3f(0.0, -1.0, 1.0);
     glVertex3f(-1.0, 0.0, -1.0);
+    glVertex3f(0.0, 1.0, 1.0);
 
     // Face 3
-    glVertex3f(-1.0, 0.0, -1.0);
-    glVertex3f(0.0, -1.0, 1.0);
     glVertex3f(0.0, 1.0, 1.0);
+    glVertex3f(1.0, 0.0, -1.0);
 
     // Face 4
     glVertex3f(1.0, 0.0, -1.0);
+    glVertex3f(0.0, -1.0, 1.0);
+
+    // Face 5
+    glVertex3f(0.0, -1.0, 1.0);
+    glVertex3f(-1.0, 0.0, -1.0);
+
+    // Face 6
+    glVertex3f(-1.0, 0.0, -1.0);
+    glVertex3f(0.0, 1.0, 1.0);
+
+    // Connect the remaining vertices to complete the tetrahedron
     glVertex3f(0.0, -1.0, 1.0);
     glVertex3f(0.0, 1.0, 1.0);
 
     glEnd();
 }
+
 
 void display() {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);

@@ -14,7 +14,7 @@ void display() {
     glLoadIdentity();
     gluLookAt(0, 0, 5, 0, 0, 0, 0, 1, 0);  // Set the viewpoint
     glRotatef(rotationAngle, 1, 1, 1);
-    glutSolidTeapot(1.0);
+    glutWireTeapot(1.0);
     glutSwapBuffers();
 }
 
