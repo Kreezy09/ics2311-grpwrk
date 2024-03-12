@@ -4,6 +4,7 @@ import pygame
 from pygame.locals import *
 from OpenGL.GLU import gluPerspective
 
+#vertices
 vertices = (
     (1, -1, -1),
     (1, -1, 1),
@@ -12,6 +13,7 @@ vertices = (
     (0, 1, 0)
 )
 
+#edges
 edges = (
     (0, 1),
     (1, 2),
@@ -23,18 +25,21 @@ edges = (
     (3, 4)
 )
 
+#draw tetrahedron
 def draw_tetrahedron():
-    glBegin(GL_LINES)
+    glBegin(GL_LINES) #lines(edges) show polyhedron clearly
     for edge in edges:
         for vertex in edge:
             glVertex3fv(vertices[vertex])
     glEnd()
 
+#initializer func
 def initialize():
     glClearColor(0, 0, 0, 1)
     gluPerspective(45, (display_size[0] / display_size[1]), 0.1, 50.0)
     glTranslatef(0.0, 0.0, -5)
 
+#display configs
 def display():
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
     draw_tetrahedron()
@@ -45,7 +50,7 @@ def main():
     global display_size
     display_size = (800, 600)
     pygame.display.set_mode(display_size, DOUBLEBUF | OPENGL)
-    pygame.display.set_caption("Tetrahedron - Using glBegin/glEnd")
+    pygame.display.set_caption("Tetrahedron Tessellation")
 
     glEnable(GL_DEPTH_TEST)
     initialize()

@@ -5,6 +5,7 @@ from pygame.locals import *
 from OpenGL.GLU import gluPerspective
 glutInit()
 
+#initialize the display
 def initialize():
     glClearColor(0, 0, 0, 1)
     gluPerspective(45, (display_size[0] / display_size[1]), 0.1, 50.0)
@@ -13,7 +14,7 @@ def initialize():
 def display():
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
 
-    glutWireTeapot(1.0)
+    glutWireTeapot(1.0) #draw the teapot
     pygame.display.flip()
 
 def main():

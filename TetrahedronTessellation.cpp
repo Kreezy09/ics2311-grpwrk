@@ -1,42 +1,36 @@
 #include <GL/glut.h>
 
-float rotationAngle = 0.0f;  // Initial rotation angle
-
-
-void initialize() {
-    glClearColor(0, 0, 0, 1);
-    glEnable(GL_DEPTH_TEST);
-}
+float rotationAngle = 0.0f; //initial angle
 
 void drawTetrahedron() {
     glBegin(GL_LINES);
 
-    // Define vertices for each face of the tetrahedron
-    // Face 1
+    //Vertices for faces and edges
+    //face 1
     glVertex3f(1.0, 0.0, -1.0);
     glVertex3f(-1.0, 0.0, -1.0);
 
-    // Face 2
+    //face 2
     glVertex3f(-1.0, 0.0, -1.0);
     glVertex3f(0.0, 1.0, 1.0);
 
-    // Face 3
+    //face 3
     glVertex3f(0.0, 1.0, 1.0);
     glVertex3f(1.0, 0.0, -1.0);
 
-    // Face 4
+    //face4
     glVertex3f(1.0, 0.0, -1.0);
     glVertex3f(0.0, -1.0, 1.0);
 
-    // Face 5
+    //face 5
     glVertex3f(0.0, -1.0, 1.0);
     glVertex3f(-1.0, 0.0, -1.0);
 
-    // Face 6
+    //face6
     glVertex3f(-1.0, 0.0, -1.0);
     glVertex3f(0.0, 1.0, 1.0);
 
-    // Connect the remaining vertices to complete the tetrahedron
+    //finaledges to connect the faces
     glVertex3f(0.0, -1.0, 1.0);
     glVertex3f(0.0, 1.0, 1.0);
 
@@ -47,11 +41,8 @@ void drawTetrahedron() {
 void display() {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glLoadIdentity();
-    gluLookAt(0, 0, 5, 0, 0, 0, 0, 1, 0);  // Set the viewpoint
-
-    // Apply rotation
-    glRotatef(rotationAngle, 1, 1, 1); // Rotate for a better view
-
+    gluLookAt(0, 0, 5, 0, 0, 0, 0, 1, 0); //set viewpoint
+    glRotatef(rotationAngle, 1, 1, 1); //rotate tetrahedron
     drawTetrahedron();
     glutSwapBuffers();
 }
@@ -64,22 +55,20 @@ void reshape(int width, int height) {
     glMatrixMode(GL_MODELVIEW);
 }
 
+//rotation logic
 void idle() {
-    rotationAngle += 0.5f;  // Adjust the rotation speed
+    rotationAngle += 0.5f;
     if (rotationAngle > 360.0f) {
         rotationAngle -= 360.0f;
     }
-    glutPostRedisplay();
+    glutPostRedisplay(); //fluid rotation
 }
 
 int main(int argc, char** argv) {
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
-    glutCreateWindow("Tetrahedron - Surface Tessellation");
+    glutCreateWindow("Tetrahedron (Surface Tessellation)");
     glutInitWindowSize(800, 600);
-
-    initialize();
-
     glutDisplayFunc(display);
     glutReshapeFunc(reshape);
     glutIdleFunc(idle);
